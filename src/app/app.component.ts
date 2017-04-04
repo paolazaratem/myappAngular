@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   template: `
     <h1>Hello {{name}}</h1>
     <p><strong>Email: </strong> {{email}}</p>
-    <p><strong>Adress: </strong> {{adress.street}} {{adress.neighborhood}} {{adress.city}} </p>
+    <p><strong>Address: </strong> {{address.street}} {{address.neighborhood}} {{address.city}} </p>
   `,
 })
 export class AppComponent  { 
   name = 'Paola';
   email = 'paolazaratem@gmail.com';
-  adress = {
+  address = {
     street: 'neu krugalle',
     neighborhood: 'kopenick',
     city: 'Berlin'
