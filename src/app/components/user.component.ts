@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <h1>Hello {{name}}</h1>
     <p><strong>Email: </strong> {{email}}</p>
     <p><strong>Address: </strong> {{address.street}} {{address.neighborhood}} {{address.city}} </p>
-    <button (click)="toggleLanguajes()">Show Lenguajes</button>
+    <button (click)="toggleLanguajes()">{{showLenguajes?'Hidden Lenguajes': 'Show Lenguajes' }}</button>
     <div *ngIf="showLenguajes">
       <h3>Lenguajes:</h3>
         {{lenguajes}}
