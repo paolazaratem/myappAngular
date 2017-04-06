@@ -15,9 +15,9 @@ import { Component } from '@angular/core';
           {{lenguaje}} 
         </li>
       </ul>
-      <form submit="addLanguaje(languaje.value)">
-         <label>Add Lenguaje:</label><br/>
-        <input type="text" name="name" [(ngModel)]="Lenguaje" /><br/>
+      <form (submit)="addLenguaje(lenguaje.value)">
+        <label>Add Lenguaje:</label><br/>
+        <input type="text" #lenguaje /><br/>
       </form>
     </div>
     <hr>
@@ -63,8 +63,9 @@ export class UserComponent  {
     }
   }
 
-  addLanguaje(languaje){
-    console.log('languaje', languaje);
+  addLenguaje(lenguaje){
+    console.log('lenguaje', lenguaje);
+    this.lenguajes.push(lenguaje);
   }
 
  }
