@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'user',
   template: `
-    <h1>Hello {{name}}</h1>
+    <h1>{{name}}</h1>
     <p><strong>Email: </strong> {{email}}</p>
     <p><strong>Address: </strong> {{address.street}} {{address.neighborhood}} {{address.city}} </p>
     <button (click)="toggleLanguajes()">{{showLenguajes?'Hidden Lenguajes': 'Show Lenguajes' }}</button>
@@ -15,7 +15,25 @@ import { Component } from '@angular/core';
           {{lenguaje}} 
         </li>
       </ul>
+      <form submit="addLanguaje(languaje.value)">
+         <label>Add Lenguaje:</label><br/>
+        <input type="text" name="name" [(ngModel)]="Lenguaje" /><br/>
+      </form>
     </div>
+    <hr>
+    <h3>Edit User</h3>
+    <form>
+      <label>Name:</label><br/>
+      <input type="text" name="name" [(ngModel)]="name" /><br/>
+      <label>Email:</label><br/>
+      <input type="text" name="email" [(ngModel)]="email" /><br/>
+      <label>Address:</label><br/>
+      <input type="text" name="address.street" [(ngModel)]="address.street" /><br/>
+      <label>Neighborhood:</label><br/>
+      <input type="text" name="address.neighborhood" [(ngModel)]="address.neighborhood" /><br/>
+      <label>City:</label><br/>
+      <input type="text" name="address.city" [(ngModel)]="address.city" /><br/>
+    </form>
   `,
 })
 export class UserComponent  { 
@@ -44,6 +62,11 @@ export class UserComponent  {
       this.showLenguajes = true;
     }
   }
+
+  addLanguaje(languaje){
+    console.log('languaje', languaje);
+  }
+
  }
 
 interface address {
