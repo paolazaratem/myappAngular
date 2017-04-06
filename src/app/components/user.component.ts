@@ -6,18 +6,18 @@ import { Component } from '@angular/core';
     <h1>{{name}}</h1>
     <p><strong>Email: </strong> {{email}}</p>
     <p><strong>Address: </strong> {{address.street}} {{address.neighborhood}} {{address.city}} </p>
-    <button (click)="toggleLanguajes()">{{showLenguajes?'Hidden Lenguajes': 'Show Lenguajes' }}</button>
-    <div *ngIf="showLenguajes">
-      <h3>Lenguajes:</h3>
-        {{lenguajes}}
+    <button (click)="toggleLanguajes()">{{showLanguages?'Hidden Languages': 'Show Languages' }}</button>
+    <div *ngIf="showLanguages">
+      <h3>languages:</h3>
+        {{languages}}
       <ul>
-        <li *ngFor="let lenguaje of lenguajes">
-          {{lenguaje}} 
+        <li *ngFor="let language of languages">
+          {{language}} 
         </li>
       </ul>
-      <form (submit)="addLenguaje(lenguaje.value)">
-        <label>Add Lenguaje:</label><br/>
-        <input type="text" #lenguaje /><br/>
+      <form (submit)="addlanguage(language.value)">
+        <label>Add language:</label><br/>
+        <input type="text" #language /><br/>
       </form>
     </div>
     <hr>
@@ -40,8 +40,8 @@ export class UserComponent  {
   name: string;
   email: string;
   address: address;
-  lenguajes: string[];
-  showLenguajes: boolean;
+  languages: string[];
+  showLanguages: boolean;
 
   constructor(){
     this.name = 'papapapapa';
@@ -51,21 +51,21 @@ export class UserComponent  {
       neighborhood: 'kopenick',
       city: 'Berlin'
     }
-    this.lenguajes = ['Java', 'C', 'Go', 'C++'];
-    this.showLenguajes = false;
+    this.languages = ['Java', 'C', 'Go', 'C++'];
+    this.showLanguages = false;
   }
 
   toggleLanguajes(){
-    if(this.showLenguajes == true){
-      this.showLenguajes = false;
+    if(this.showLanguages == true){
+      this.showLanguages = false;
     }else {
-      this.showLenguajes = true;
+      this.showLanguages = true;
     }
   }
 
-  addLenguaje(lenguaje){
-    console.log('lenguaje', lenguaje);
-    this.lenguajes.push(lenguaje);
+  addlanguage(language){
+    console.log('language', language);
+    this.languages.push(language);
   }
 
  }
