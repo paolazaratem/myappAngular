@@ -1,40 +1,9 @@
 import { Component } from '@angular/core';
 import { PostService } from '../services/post.service';
 @Component({
+  moduleId: module.id,
   selector: 'user',
-  template: `
-    <h1>{{name}}</h1>
-    <p><strong>Email: </strong> {{email}}</p>
-    <p><strong>Address: </strong> {{address.street}} {{address.neighborhood}} {{address.city}} </p>
-    <button (click)="toggleLanguajes()">{{showLanguages?'Hidden Languages': 'Show Languages' }}</button>
-    <div *ngIf="showLanguages">
-      <h3>languages:</h3>
-        {{languages}}
-      <ul>
-        <li *ngFor="let language of languages; let i = index">
-          {{language}} <button (click)="deleteLanguage(i)">x</button>
-        </li>
-      </ul>
-      <form (submit)="addlanguage(language.value)">
-        <label>Add language:</label><br/>
-        <input type="text" #language /><br/>
-      </form>
-    </div>
-    <hr>
-    <h3>Edit User</h3>
-    <form>
-      <label>Name:</label><br/>
-      <input type="text" name="name" [(ngModel)]="name" /><br/>
-      <label>Email:</label><br/>
-      <input type="text" name="email" [(ngModel)]="email" /><br/>
-      <label>Address:</label><br/>
-      <input type="text" name="address.street" [(ngModel)]="address.street" /><br/>
-      <label>Neighborhood:</label><br/>
-      <input type="text" name="address.neighborhood" [(ngModel)]="address.neighborhood" /><br/>
-      <label>City:</label><br/>
-      <input type="text" name="address.city" [(ngModel)]="address.city" /><br/>
-    </form>
-  `,
+  templateUrl: 'user.component.html',
   providers: [ PostService ]
 })
 export class UserComponent  { 
@@ -43,6 +12,7 @@ export class UserComponent  {
   address: address;
   languages: string[];
   showLanguages: boolean;
+  posts: Posts [];
 
   constructor(private postService: PostService){
     this.name = 'papapapapa';
@@ -57,6 +27,7 @@ export class UserComponent  {
 
     this.postService.getPosts().subscribe( posts => {
       console.log('posts', posts);
+      this.posts = posts;
     });
   }
 
@@ -68,12 +39,12 @@ export class UserComponent  {
     }
   }
 
-  addlanguage(language){
+  addlanguage(language: string){
     console.log('language', language);
     this.languages.push(language);
   }
 
-  deleteLanguage(i){
+  deleteLanguage(i: number){
     this.languages.splice(i,1);
     console.log('this.languages', this.languages);
   }
@@ -84,4 +55,11 @@ interface address {
     street: string,
     neighborhood: string,
     city: string
+}
+
+interface Posts {
+  userId: number,
+  id: number,
+  title: string,
+  body: string
 }
