@@ -11,8 +11,8 @@ import { Component } from '@angular/core';
       <h3>languages:</h3>
         {{languages}}
       <ul>
-        <li *ngFor="let language of languages">
-          {{language}} 
+        <li *ngFor="let language of languages; let i = index">
+          {{language}} <button (click)="deleteLanguage(i)">x</button>
         </li>
       </ul>
       <form (submit)="addlanguage(language.value)">
@@ -66,6 +66,11 @@ export class UserComponent  {
   addlanguage(language){
     console.log('language', language);
     this.languages.push(language);
+  }
+
+  deleteLanguage(i){
+    this.languages.splice(i,1);
+    console.log('this.languages', this.languages);
   }
 
  }
