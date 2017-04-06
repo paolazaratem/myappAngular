@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { PostService } from '../services/post.service';
 @Component({
   selector: 'user',
   template: `
@@ -35,6 +35,7 @@ import { Component } from '@angular/core';
       <input type="text" name="address.city" [(ngModel)]="address.city" /><br/>
     </form>
   `,
+  providers: [ PostService ]
 })
 export class UserComponent  { 
   name: string;
@@ -43,7 +44,7 @@ export class UserComponent  {
   languages: string[];
   showLanguages: boolean;
 
-  constructor(){
+  constructor(private postService: PostService){
     this.name = 'papapapapa';
     this.email = 'paolazaratem@gmail.com';
     this.address = {
@@ -53,6 +54,10 @@ export class UserComponent  {
     }
     this.languages = ['Java', 'C', 'Go', 'C++'];
     this.showLanguages = false;
+
+    this.postService.getPosts().subscribe( posts => {
+      console.log('posts', posts);
+    });
   }
 
   toggleLanguajes(){
